@@ -67,6 +67,16 @@ A link is sent by email, and this link has the following structure: `/auth/reset
 
 The reset password token has an expiration time of 30 minutes (c.f. `/lib/server/services/AuthService.ts`).
 
+# User store
+A user `store` is available at `$lib/front/stores`, it can be used to display user data on the frontend.
+
+# Data transformation & utils
+This boilerplate includes several utilities :
+- EntityService `/lib/server/services/EntityService.ts` used to do database queries without duplicate the code for each entity.
+- serverUtils `/lib/server/serverUtils.ts` used to format data from database : remove sensitive data & transform `_id` ObjectId to `id` string.
+Also includes a function to retrieve current user from cookies.
+
+
 # Getting Started
 Clone the boilerplate as usual
 

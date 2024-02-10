@@ -1,5 +1,12 @@
+<script lang="ts">
+	import {user} from "$lib/front/stores";
+</script>
+
 <div class="wrapper">
 	<h1 class="text-xl font-bold">Welcome to Sveltekit Auth Boilerplate</h1>
+	{#if $user}
+		<span class="p-2 px-4 rounded-lg bg-base-300">Your are connected with <b>{$user.username}</b> account !</span>
+	{/if}
 	<ul class="list-disc">
 		<li>
 			<a href="/auth/login">Login page</a>

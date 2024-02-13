@@ -15,7 +15,7 @@ const AuthService = {
 	 * Register a new user
 	 * @param userData
 	 */
-	register: async (userData: Partial<User>): Promise<void> => {
+	register: async (userData: Partial<User>, redirectTo?: string): Promise<void> => {
 		const user = new UserModel();
 		user.email = userData.email;
 		user.username = userData.username;
@@ -77,7 +77,7 @@ const AuthService = {
 							'You are just one step away from completing your registration, activate your account by clicking the button below',
 						button: {
 							label: 'Activate your account',
-							link: PUBLIC_URL + '/auth/activate-account?code=' + user.activationToken
+							link: PUBLIC_URL + '/auth/activate-account?code=' + user.activationToken + (redirectTo ? `&redirect_to=${redirectTo}` : '')
 						}
 					})
 				});

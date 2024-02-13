@@ -8,6 +8,7 @@ export const actions: Actions = {
 		const data = await request.formData();
 		const email = data.get('email') as string;
 		const username = data.get('username') as string;
+		const redirectTo = data.get('redirect_to') as string
 		try {
 			await AuthService.register({
 				email,
@@ -15,7 +16,7 @@ export const actions: Actions = {
 				password: data.get('password') as string,
 				confirmation: data.get('confirmation') as string,
 				terms: data.get('terms') as unknown as boolean
-			});
+			}, redirectTo);
 		} catch (errors: any) {
 			return fail(400, {
 				data: {
@@ -28,7 +29,7 @@ export const actions: Actions = {
 		throw redirect(
 			302,
 			'/auth/login' +
-				(!['0', 'false'].includes(PUBLIC_ACCOUNT_ACTIVATION) ? '?message=activate-account' : '')
+				(!['0', 'false'].includes(PUBLIC_ACCOUNT_ACTIVATION) ? '?message=activate-account' : `?redirect_to=${redirectTo}`)
 		);
 	}
 };

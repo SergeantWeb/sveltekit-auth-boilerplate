@@ -6,6 +6,7 @@
 	import Alert from '$lib/front/components/Alert.svelte';
 
 	export let form;
+	export let data;
 
 	let message: { title?: string; description?: string } | null = null;
 	$: if ($page.url.searchParams.get('message') !== null) {
@@ -33,35 +34,35 @@
 	<div class="text-xl font-bold text-center">Login</div>
 
 	<Alert
-		closed={!form?.errors?.error}
-		title="Error :"
-		description={form?.errors?.error}
-		color="error"
-		dismissible
+			closed={!form?.errors?.error}
+			title="Error :"
+			description={form?.errors?.error}
+			color="error"
+			dismissible
 	/>
 
 	<Alert
-		closed={message === null}
-		title={message?.title}
-		description={message?.description}
-		bordered={false}
-		color="success"
-		dismissible
+			closed={message === null}
+			title={message?.title}
+			description={message?.description}
+			bordered={false}
+			color="success"
+			dismissible
 	/>
 
 	<FormField
-		label="Username or Email"
-		name="username"
-		value={form?.data?.username ?? null}
-		error={form?.errors?.username}
-		required
+			label="Username or Email"
+			name="username"
+			value={form?.data?.username ?? null}
+			error={form?.errors?.username}
+			required
 	/>
 	<FormField
-		label="Password"
-		name="password"
-		type="password"
-		error={form?.errors?.password}
-		required
+			label="Password"
+			name="password"
+			type="password"
+			error={form?.errors?.password}
+			required
 	/>
 
 	{#if $page.url.searchParams.get('redirect_to')}
@@ -72,7 +73,7 @@
 
 	<div class="flex flex-wrap items-center justify-between px-1 gap-4 w-full">
 		{#if !['0', 'false'].includes(PUBLIC_ALLOW_REGISTRATION)}
-			<a href="/auth/register" class="hover:link">No account yet ?</a>
+			<a href="/auth/register{data.redirectTo ? `?redirect_to=${data.redirectTo}` : ''}" class="hover:link">No account yet ?</a>
 		{/if}
 		{#if !['0', 'false'].includes(PUBLIC_ALLOW_PASSWORD_RESET)}
 			<a href="/auth/reset-password" class="hover:link">Forgot your password ?</a>

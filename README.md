@@ -72,7 +72,6 @@ A user `store` is available at `$lib/front/stores`, it can be used to display us
 
 # Data transformation & utils
 This boilerplate includes several utilities :
-- EntityService `/lib/server/services/EntityService.ts` used to do database queries without duplicate the code for each entity.
 - serverUtils `/lib/server/serverUtils.ts` used to format data from database : remove sensitive data & transform `_id` ObjectId to `id` string.
 Also includes a function to retrieve current user from cookies.
 

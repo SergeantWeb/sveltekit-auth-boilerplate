@@ -1,7 +1,13 @@
 import type { Actions } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 import { dev } from '$app/environment';
 import { fail, redirect } from '@sveltejs/kit';
 import AuthService from '$lib/server/services/AuthService';
+
+export const load: PageServerLoad = async ({ url }) => {
+	const redirectTo = url.searchParams.get('redirect_to');
+	return { redirectTo }
+};
 
 export const actions: Actions = {
 	default: async ({ request, cookies }) => {

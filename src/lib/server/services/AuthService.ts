@@ -5,6 +5,7 @@ import crypto from 'crypto';
 import jsonwebtoken from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import validator from 'validator';
+import {Types} from "mongoose";
 import UserModel from '$lib/server/models/UserModel';
 import MailService from '$lib/server/services/MailService';
 import validation from '$lib/server/validation';
@@ -87,6 +88,7 @@ const AuthService = {
 			user.activated = true;
 		}
 
+		user._id = new Types.ObjectId()
 		await user.save();
 	},
 
